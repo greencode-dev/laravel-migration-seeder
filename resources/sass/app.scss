@@ -1,8 +1,33 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+// Importiamo le variabili personalizzate
+@import "variables";
 
-// Variables
-@import 'variables';
+// Importiamo Bootstrap
+@import "bootstrap/scss/bootstrap";
 
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
+// Stili personalizzati per il tabellone
+.train-board {
+    background-color: #1e272e;
+    border: 2px solid #3d3d3d;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #fbc531;
+    --bs-table-border-color: #3d3d3d;
+
+    &.table-hover tbody tr:hover {
+        --bs-table-hover-bg: rgba(255, 255, 255, 0.05);
+        --bs-table-hover-color: #fbc531;
+    }
+}
+
+.status-cancelled {
+    color: #eb4d4b;
+}
+.status-delayed {
+    color: #f0932b;
+}
+.status-on-time {
+    color: #6ab04c;
+}
