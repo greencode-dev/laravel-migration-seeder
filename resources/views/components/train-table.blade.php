@@ -1,8 +1,17 @@
 @props(['trains'])
 
-<div class="train-board p-4 rounded shadow">
+<style>
+    .train-board {
+        font-family: 'Share Tech Mono', monospace;
+        background-color: #222;
+        color: #f8f9fa;
+    }
+    .table { color: inherit; }
+</style>
+
+<div class="train-board p-4 rounded shadow border border-secondary">
     <div class="table-responsive">
-        <table class="table table-hover align-middle">
+        <table class="table table-dark table-hover align-middle mb-0">
             <thead>
                 <tr class="text-secondary small text-uppercase">
                     <th scope="col">Codice</th>
@@ -29,11 +38,15 @@
                     <td class="text-center">{{ $train->numero_carrozze }}</td>
                     <td class="text-center">
                         @if($train->cancellato)
-                            <span class="status-cancelled fw-bold text-uppercase">Cancellato</span>
+                            <span class="text-danger fw-bold text-uppercase">Cancellato</span>
+                        @elseif($train->orario_di_arrivo < now())
+                            <span class="text-secondary fw-bold text-uppercase">Arrivato</span>
+                        @elseif($train->orario_di_partenza < now())
+                            <span class="text-success fw-bold text-uppercase">In Viaggio</span>
                         @elseif(!$train->in_orario)
-                            <span class="status-delayed fw-bold text-uppercase">Ritardo</span>
+                            <span class="text-warning fw-bold text-uppercase">Ritardo</span>
                         @else
-                            <span class="status-on-time fw-bold text-uppercase">In Orario</span>
+                            <span class="text-info fw-bold text-uppercase">In Orario</span>
                         @endif
                     </td>
                 </tr>

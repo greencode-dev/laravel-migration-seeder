@@ -34,7 +34,8 @@ class TrainSeeder extends Seeder
             // Assicura che la stazione di arrivo sia diversa da quella di partenza
             $arrivalStation = $faker->randomElement(array_diff($stations, [$departureStation])); 
 
-            $departureTime = $faker->dateTimeBetween('now', '+1 week'); // Partenza entro la prossima settimana
+            // Crea treni sia passati che futuri per testare lo stato "Arrivato" e i filtri
+            $departureTime = $faker->dateTimeBetween('-1 week', '+1 week'); 
             // Arrivo da 1 a 8 ore dopo la partenza
             $arrivalTime = (clone $departureTime)->modify('+' . $faker->numberBetween(1, 8) . ' hours'); 
 

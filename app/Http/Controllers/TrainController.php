@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 
 class TrainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Recupera i treni in partenza da questo momento in avanti per un tabellone "live"
-        $trains = Train::where('orario_di_partenza', '>=', now())->orderBy('orario_di_partenza')->get();
+        // Controlla se l'utente vuole vedere tutti i treni (incluso il passato)
+        $showAll = $request->has('all');
 
-        return view('home', compact('trains'));
+        $trains = Train::when(!$showAll, function ($query) {
+            // Se non è attivo il filtro "all", mostra solo quelli futuri
+            return $query->where('orario_di_partenza', '>=', now());
+        })
+        ->orderBy('orario_di_partenza')
+        ->get();
+
+        return view('home', compact('trains', 'showAll'));
     }
 }
