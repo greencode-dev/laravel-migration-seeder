@@ -1,5 +1,11 @@
 <?php
 
+/* **************************************************************************
+Controller per gestire la logica di recupero dei treni in partenza da questo momento in avanti, ordinati per orario di partenza, e passare questi dati alla vista home.blade.php per visualizzare il tabellone delle partenze in tempo reale.
+************************************************************************** */
+
+// app/Http/Controllers/TrainController.php
+
 namespace App\View\Components;
 
 use Closure;

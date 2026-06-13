@@ -1,5 +1,11 @@
 <?php
 
+/* ***************************************************************************
+Migration per creare la tabella "trains" con i campi necessari per memorizzare le informazioni sui treni, come azienda, stazione di partenza e arrivo, orari di partenza e arrivo, codice treno, numero di carrozze, numero di binario, stato di puntualità e cancellazione, e timestamp per la creazione e l'aggiornamento dei record.
+************************************************************************** */
+
+// database/migrations/2026_06_09_071646_create_trains_table.php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
